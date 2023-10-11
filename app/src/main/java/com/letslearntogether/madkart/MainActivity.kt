@@ -2,6 +2,7 @@ package com.letslearntogether.madkart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.letslearntogether.madkart.databinding.ActivityMainBinding
 
@@ -26,9 +27,39 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL, false)
         binding.viewProductList.adapter = adapter
 
+    //    updateUI(ProductListViewState.Loading)
+
+
+        updateUI(ProductListViewState.Content((1..3).map {
+            ProductCardData("Playstation $it", "This is a nice console! Check it out", "200 US$")
+        }))
 
 
 
+
+    }
+
+    private fun updateUI(viewState: ProductListViewState) {
+        when(viewState){
+            is ProductListViewState.Content -> {
+                binding.errorView.isVisible = false
+                binding.loadingView.isVisible = false
+                binding.viewProductList.isVisible = true
+                adapter.setData(viewState.productList)
+            }
+
+            ProductListViewState.Error -> {
+                binding.viewProductList.isVisible = false
+                binding.errorView.isVisible = true
+                binding.loadingView.isVisible = false
+            }
+
+            ProductListViewState.Loading -> {
+                binding.viewProductList.isVisible = false
+                binding.errorView.isVisible = false
+                binding.loadingView.isVisible = true
+            }
+        }
 
     }
 }

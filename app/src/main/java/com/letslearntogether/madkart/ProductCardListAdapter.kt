@@ -8,6 +8,8 @@ import com.letslearntogether.madkart.databinding.ProductCardBinding
 
 class ProductCardListAdapter : RecyclerView.Adapter<ProductCardListAdapter.ViewHolder>() {
 
+    private var data: List<ProductCardData> = emptyList()
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,15 +23,19 @@ class ProductCardListAdapter : RecyclerView.Adapter<ProductCardListAdapter.ViewH
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind()
+        holder.bind(data[position])
+    }
+
+    fun setData(data:List<ProductCardData>) {
+        this.data = data
     }
 
     class ViewHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
-        fun bind(){
+        fun bind(productCardViewState: ProductCardData){
             val bind = ProductCardBinding.bind(itemView)
-            bind.viewProductName.text = "iPhone 15"
-            bind.viewProductDescription.text = "Same as iPhone 14 :)"
-            bind.productPrice.text = "1599$"
+            bind.viewProductName.text = productCardViewState.title
+            bind.viewProductDescription.text = productCardViewState.description
+            bind.productPrice.text = productCardViewState.price
         }
 
     }

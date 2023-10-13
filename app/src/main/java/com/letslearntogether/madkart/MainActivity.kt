@@ -2,6 +2,7 @@ package com.letslearntogether.madkart
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.letslearntogether.madkart.databinding.ActivityMainBinding
@@ -14,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     //List - Recycler view
     private val adapter = ProductCardListAdapter()
 
+    private val viewModel: ProductListViewModel by viewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +29,15 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL, false)
         binding.viewProductList.adapter = adapter
 
+        viewModel.loadProductList()
+        viewModel.viewState.observe(this){viewState ->
+            updateUI(viewState)
+        }
+
     //    updateUI(ProductListViewState.Loading)
-
-
-        updateUI(ProductListViewState.Content((1..3).map {
+    /*    updateUI(ProductListViewState.Content((1..3).map {
             ProductCardData("Playstation $it", "This is a nice console! Check it out", "200 US$")
-        }))
+        }))*/
 
 
 

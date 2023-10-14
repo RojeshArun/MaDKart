@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.letslearntogether.madkart.databinding.ProductCardBinding
 
 class ProductCardListAdapter : RecyclerView.Adapter<ProductCardListAdapter.ViewHolder>() {
@@ -32,9 +34,18 @@ class ProductCardListAdapter : RecyclerView.Adapter<ProductCardListAdapter.ViewH
     class ViewHolder(itemView : View): RecyclerView.ViewHolder(itemView) {
         fun bind(productCardViewState: ProductCardData){
             val bind = ProductCardBinding.bind(itemView)
-            bind.viewProductName.text = productCardViewState.title
-            bind.viewProductDescription.text = productCardViewState.description
-            bind.productPrice.text = productCardViewState.price
+
+            bind.apply {
+                viewProductName.text = productCardViewState.title
+                viewProductDescription.text = productCardViewState.description
+                productPrice.text = productCardViewState.price
+
+                Glide.with(productImage)
+                    .asBitmap()
+                    .load(productCardViewState.url)
+                    .into(BitmapImageViewTarget(productImage))
+            }
+
         }
 
     }

@@ -34,13 +34,6 @@ class MainActivity : AppCompatActivity() {
             updateUI(viewState)
         }
 
-    //    updateUI(ProductListViewState.Loading)
-    /*    updateUI(ProductListViewState.Content((1..3).map {
-            ProductCardData("Playstation $it", "This is a nice console! Check it out", "200 US$")
-        }))*/
-
-
-
 
     }
 

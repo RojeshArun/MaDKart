@@ -3,6 +3,8 @@ package com.letslearntogether.madkart
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 class ProductListViewModel : ViewModel() {
 
@@ -10,17 +12,20 @@ class ProductListViewModel : ViewModel() {
     val viewState: LiveData<ProductListViewState>
     get() = _viewState
 
+    private val repository =  ProductRepository()
+
 
     fun loadProductList() {
-        _viewState.postValue(ProductListViewState.Loading)
-        //Data call to fetch products
 
-        _viewState.postValue(ProductListViewState.Content((1..3).map {
-            ProductCardData(
-                "Playstation $it",
-                "This is a nice console! Check it out", "200 US$"
-            )
-        }))
+        viewModelScope.launch {
+            _viewState.postValue(ProductListViewState.Loading)
+            val productList = repository.getProductList()
+            _viewState.postValue(ProductListViewState.Content(productList))
+
+        }
+
+
+
 
     }
 }

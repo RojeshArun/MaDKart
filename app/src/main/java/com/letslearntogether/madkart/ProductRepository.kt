@@ -6,20 +6,17 @@ import kotlinx.coroutines.withContext
 
 class ProductRepository {
 
+    private val client = APIClient().getClient()
+
     suspend fun getProductList(): List<ProductCardData> {
 
         return withContext(Dispatchers.IO) {
-            delay(2500)
-
-            //Dummy Data genration
-            (1..3).map {
+            client.getProductList().map{
                 ProductCardData(
-                    "Playstation $it",
-                    "This is a nice console! Check it out",
-                    "200 US$",
-                    "https://firebasestorage.googleapis.com/v0/b/androidecommercesample" +
-                            ".appspot.com/o/playstation_1.png?alt=media&token=1414f40e" +
-                            "-23cf-4f44-b922-e12bfcfca9f3"
+                it.title,
+                it.description,
+                    "US $ ${it.price}",
+                it.imageUrl
                 )
             }
         }

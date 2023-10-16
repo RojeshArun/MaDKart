@@ -19,6 +19,7 @@ class ProductListViewModel : ViewModel() {
 
         viewModelScope.launch {
             _viewState.postValue(ProductListViewState.Loading)
+            // Data call to fetch products
             val productList = repository.getProductList()
             _viewState.postValue(ProductListViewState.Content(productList))
 

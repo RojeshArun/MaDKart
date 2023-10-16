@@ -20,7 +20,7 @@ class ProductCardListAdapter : RecyclerView.Adapter<ProductCardListAdapter.ViewH
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

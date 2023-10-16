@@ -29,10 +29,11 @@ class MainActivity : AppCompatActivity() {
             LinearLayoutManager.VERTICAL, false)
         binding.viewProductList.adapter = adapter
 
-        viewModel.loadProductList()
         viewModel.viewState.observe(this){viewState ->
             updateUI(viewState)
         }
+
+        viewModel.loadProductList()
 
 
     }

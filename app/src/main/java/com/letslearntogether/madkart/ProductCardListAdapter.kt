@@ -20,6 +20,7 @@ class ProductCardListAdapter : RecyclerView.Adapter<ProductCardListAdapter.ViewH
     }
 
     override fun getItemCount(): Int {
+        //Step 5.1
         return data.size
     }
 

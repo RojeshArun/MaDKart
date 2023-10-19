@@ -1,5 +1,6 @@
 package com.letslearntogether.madkart
 
+import dagger.Binds
 import retrofit2.http.GET
 
 interface ProductService {

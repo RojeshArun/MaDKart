@@ -6,22 +6,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.letslearntogether.madkart.*
 import com.letslearntogether.madkart.databinding.FragmentProductListBinding
-import com.renarosantos.ecommerceapp.ProductCardListAdapter
+import com.letslearntogether.madkart.ProductCardListAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A simple [Fragment] subclass.
  * Use the [ProductListFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+//Step 10 Hilt
+@AndroidEntryPoint
 class ProductListFragment : Fragment() {
     private lateinit var binding: FragmentProductListBinding
     private val adapter = ProductCardListAdapter(::onItemClicked)
+    private val viewModel:ProductListViewModel by viewModels()
 
     private fun onItemClicked(productCardData: ProductCardData) {
           //  findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailsFragment())
@@ -29,12 +32,14 @@ class ProductListFragment : Fragment() {
         action_productListFragment_to_productDetailsFragment)
     }
 
-    private val viewModel by lazy {
+
+    //Step Remove HILT
+    /*private val viewModel by lazy {
         ViewModelProvider(
             this,
             ProductViewModelProvider(ProductRepositoryAPI())
         )[ProductListViewModel::class.java]
-    }
+    }*/
 
 
 

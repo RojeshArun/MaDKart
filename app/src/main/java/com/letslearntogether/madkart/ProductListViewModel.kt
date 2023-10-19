@@ -4,9 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class ProductListViewModel(private val repository :  ProductRepository) : ViewModel() {
+//Step 9 Hilt
+@HiltViewModel  // @HiltViewModel is an annotation that enables Hilt to inject a ViewModel
+class ProductListViewModel @Inject constructor(
+    private val repository :  ProductRepository
+    ) : ViewModel() {
 
     private val _viewState = MutableLiveData<ProductListViewState>()
     val viewState: LiveData<ProductListViewState>

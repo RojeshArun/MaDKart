@@ -1,13 +1,14 @@
 package com.letslearntogether.madkart.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.core.view.isVisible
-import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.letslearntogether.madkart.*
+import androidx.appcompat.app.AppCompatActivity
 import com.letslearntogether.madkart.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+//Step 10 Hilt
+                    // handles the definition of entry points
+                    // and access to the entry points for these classes
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

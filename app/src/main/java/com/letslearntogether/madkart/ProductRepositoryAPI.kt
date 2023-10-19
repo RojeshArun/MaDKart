@@ -2,16 +2,16 @@ package com.letslearntogether.madkart
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class ProductRepositoryAPI :ProductRepository{
-
-    private val client = APIClient().getClient()
+//Step 2 Hilt
+class ProductRepositoryAPI @Inject constructor(private val service: ProductService) :ProductRepository{
 
     override suspend fun getProductList(): List<ProductCardData> {
-        //Step 5
+        //Step 3 Hilt
         return withContext(Dispatchers.IO) {
-            client.getProductList().map{
-                ProductCardData(
+            service.getProductList().map{
+                ProductCardData( // Any Optimization can we do here?
                 it.title,
                 it.description,
                     "US $ ${it.price}",

@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart
+package com.letslearntogether.madkart.domain.usecases.products
 
 data class ProductCardData(
     val title: String,

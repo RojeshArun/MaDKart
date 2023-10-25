@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.view
+package com.letslearntogether.madkart.presentation.productlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.letslearntogether.madkart.*
 import com.letslearntogether.madkart.databinding.FragmentProductListBinding
-import com.letslearntogether.madkart.ProductCardListAdapter
+import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ProductListFragment : Fragment() {
     private lateinit var binding: FragmentProductListBinding
     private val adapter = ProductCardListAdapter(::onItemClicked)
-    private val viewModel:ProductListViewModel by viewModels()
+    private val viewModel: ProductListViewModel by viewModels()
 
     private fun onItemClicked(productCardData: ProductCardData) {
           //  findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailsFragment())

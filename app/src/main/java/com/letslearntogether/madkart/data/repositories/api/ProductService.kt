@@ -1,6 +1,6 @@
-package com.letslearntogether.madkart
+package com.letslearntogether.madkart.data.repositories.api
 
-import dagger.Binds
+import com.letslearntogether.madkart.data.repositories.api.models.ProductEntity
 import retrofit2.http.GET
 
 interface ProductService {

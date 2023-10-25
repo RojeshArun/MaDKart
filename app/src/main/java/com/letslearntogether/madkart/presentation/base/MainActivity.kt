@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.view
+package com.letslearntogether.madkart.presentation.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

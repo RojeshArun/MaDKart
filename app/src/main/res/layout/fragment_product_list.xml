@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fafafa"
-    tools:context=".view.MainActivity">
+    tools:context=".presentation.base.MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/view_product_list"

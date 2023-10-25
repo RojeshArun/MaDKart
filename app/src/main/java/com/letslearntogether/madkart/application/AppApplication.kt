@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart
+package com.letslearntogether.madkart.application
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

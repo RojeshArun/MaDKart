@@ -1,9 +1,9 @@
 package com.letslearntogether.madkart.di
 
-import com.letslearntogether.madkart.APIClient
-import com.letslearntogether.madkart.ProductRepository
-import com.letslearntogether.madkart.ProductRepositoryAPI
-import com.letslearntogether.madkart.ProductService
+import com.letslearntogether.madkart.data.repositories.api.APIClient
+import com.letslearntogether.madkart.data.repositories.ProductRepository
+import com.letslearntogether.madkart.data.repositories.api.ProductRepositoryAPI
+import com.letslearntogether.madkart.data.repositories.api.ProductService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ class RepositoryModule {
 
     //Step 5 Hilt - Create and provide instances of dependencies
     @Provides
-    fun providesService():ProductService  = APIClient.getClient()
+    fun providesService(): ProductService = APIClient.getClient()
 
 
     //Step 6 Hilt
@@ -30,7 +30,7 @@ class RepositoryModule {
     @Provides
     fun providesProductRepositoryAPI(
         service: ProductService
-    ):ProductRepositoryAPI = ProductRepositoryAPI(service)
+    ): ProductRepositoryAPI = ProductRepositoryAPI(service)
 
 
 }

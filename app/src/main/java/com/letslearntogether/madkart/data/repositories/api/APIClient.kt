@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart
+package com.letslearntogether.madkart.data.repositories.api
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -14,7 +14,7 @@ class APIClient {
 
     //Step 8 Hilt
     companion object{
-        fun getClient(): ProductService{
+        fun getClient(): ProductService {
             return Retrofit
                 .Builder()
                 .baseUrl("https://us-central1-android-course-api.cloudfunctions.net/")

@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart
+package com.letslearntogether.madkart.presentation.productlist
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.R
 import com.letslearntogether.madkart.databinding.ProductCardBinding
 
 class ProductCardListAdapter(val onItemClicked: (ProductCardData) -> Unit)
@@ -19,7 +21,8 @@ class ProductCardListAdapter(val onItemClicked: (ProductCardData) -> Unit)
         viewType: Int
     ): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.product_card,
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.product_card,
                 parent, false)
         )
     }

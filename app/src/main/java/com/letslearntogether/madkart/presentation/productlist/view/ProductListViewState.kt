@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.presentation.productlist
+package com.letslearntogether.madkart.presentation.productlist.view
 
 import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
 

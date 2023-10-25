@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.presentation.productlist
+package com.letslearntogether.madkart.presentation.productlist.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.letslearntogether.madkart.*
 import com.letslearntogether.madkart.databinding.FragmentProductListBinding
 import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.presentation.productlist.viewmodel.ProductListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -31,16 +32,6 @@ class ProductListFragment : Fragment() {
         Navigation.findNavController(binding.root).navigate(R.id.
         action_productListFragment_to_productDetailsFragment)
     }
-
-
-    //Step Remove HILT
-    /*private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            ProductViewModelProvider(ProductRepositoryAPI())
-        )[ProductListViewModel::class.java]
-    }*/
-
 
 
     override fun onCreateView(

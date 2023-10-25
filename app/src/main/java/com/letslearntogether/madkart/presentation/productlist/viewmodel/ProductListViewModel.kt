@@ -1,10 +1,11 @@
-package com.letslearntogether.madkart.presentation.productlist
+package com.letslearntogether.madkart.presentation.productlist.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.letslearntogether.madkart.data.repositories.ProductRepository
+import com.letslearntogether.madkart.presentation.productlist.view.ProductListViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

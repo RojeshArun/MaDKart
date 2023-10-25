@@ -2,6 +2,7 @@ package com.letslearntogether.madkart.data.repositories.api
 
 import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
 import com.letslearntogether.madkart.data.repositories.ProductRepository
+import com.letslearntogether.madkart.domain.usecases.products.ProductDetails
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -15,10 +16,27 @@ class ProductRepositoryAPI @Inject constructor(private val service: ProductServi
         return withContext(Dispatchers.IO) {
             service.getProductList().map{
                 ProductCardData( // Any Optimization can we do here?
-                it.title,
-                it.description,
+                    it.title,
+                    it.description,
                     "US $ ${it.price}",
-                it.imageUrl
+                    it.imageUrl,
+                    it.id
+                )
+            }
+        }
+    }
+
+    override suspend fun getProductDetails(productId: String): ProductDetails {
+        return  withContext(Dispatchers.IO){
+            service.getProductDetails(productId).run {
+                ProductDetails(
+                    this.title,
+                    this.description,
+                    this.full_description,
+                    "US $ ${this.price}",
+                    this.imageUrl,
+                    this.pros,
+                    this.cons
                 )
             }
         }

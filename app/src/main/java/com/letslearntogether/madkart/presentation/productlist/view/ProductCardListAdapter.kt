@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.presentation.productlist
+package com.letslearntogether.madkart.presentation.productlist.view
 
 import android.view.LayoutInflater
 import android.view.View

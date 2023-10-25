@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.di
+package com.letslearntogether.madkart.data.repositories.di
 
 import com.letslearntogether.madkart.data.repositories.api.APIClient
 import com.letslearntogether.madkart.data.repositories.ProductRepository

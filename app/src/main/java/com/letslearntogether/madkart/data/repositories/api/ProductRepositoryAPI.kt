@@ -14,20 +14,21 @@ class ProductRepositoryAPI @Inject constructor(private val service: ProductServi
     override suspend fun getProductList(): List<ProductCardData> {
         //Step 3 Hilt
         return withContext(Dispatchers.IO) {
-            service.getProductList().map{
+            service.getProductList().map {
                 ProductCardData( // Any Optimization can we do here?
                     it.title,
                     it.description,
                     "US $ ${it.price}",
                     it.imageUrl,
-                    it.id
+                    it.id,
+                    true
                 )
             }
         }
     }
 
     override suspend fun getProductDetails(productId: String): ProductDetails {
-        return  withContext(Dispatchers.IO){
+        return withContext(Dispatchers.IO) {
             service.getProductDetails(productId).run {
                 ProductDetails(
                     this.title,

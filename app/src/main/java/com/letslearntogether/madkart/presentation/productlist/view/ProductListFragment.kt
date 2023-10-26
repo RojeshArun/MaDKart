@@ -28,9 +28,11 @@ class ProductListFragment : Fragment() {
     private val viewModel: ProductListViewModel by viewModels()
 
     private fun onItemClicked(productCardData: ProductCardData) {
-          //  findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailsFragment())
-        Navigation.findNavController(binding.root).navigate(R.id.
-        action_productListFragment_to_productDetailsFragment)
+        //  findNavController().navigate(ProductListFragmentDirections.
+        //  actionProductListFragmentToProductDetailsFragment())
+        Navigation.findNavController(binding.root).navigate(
+            R.id.action_productListFragment_to_productDetailsFragment
+        )
     }
 
 
@@ -70,9 +72,9 @@ class ProductListFragment : Fragment() {
                 }
                 ProductListViewState.Loading -> {
 
-                        viewProductList.isVisible = false
-                        errorView.isVisible = false
-                        loadingView.isVisible = true
+                    viewProductList.isVisible = false
+                    errorView.isVisible = false
+                    loadingView.isVisible = true
                 }
             }
         }

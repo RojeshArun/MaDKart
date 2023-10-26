@@ -5,7 +5,7 @@ import com.letslearntogether.madkart.domain.usecases.products.ProductDetails
 
 interface ProductRepository {
 
-   suspend fun getProductList():List<ProductCardData>
+    suspend fun getProductList(): List<ProductCardData>
 
-   suspend fun getProductDetails(productId: String):ProductDetails
+    suspend fun getProductDetails(productId: String): ProductDetails
 }

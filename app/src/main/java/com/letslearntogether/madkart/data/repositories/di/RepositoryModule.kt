@@ -2,8 +2,10 @@ package com.letslearntogether.madkart.data.repositories.di
 
 import com.letslearntogether.madkart.data.repositories.api.APIClient
 import com.letslearntogether.madkart.data.repositories.ProductRepository
+import com.letslearntogether.madkart.data.repositories.WishListRepository
 import com.letslearntogether.madkart.data.repositories.api.ProductRepositoryAPI
 import com.letslearntogether.madkart.data.repositories.api.ProductService
+import com.letslearntogether.madkart.data.repositories.api.WishListDatabaseRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -31,6 +33,11 @@ class RepositoryModule {
     fun providesProductRepositoryAPI(
         service: ProductService
     ): ProductRepositoryAPI = ProductRepositoryAPI(service)
+
+    @Provides
+    fun providesWishListRepository(
+        databaseRepository: WishListDatabaseRepository
+    ): WishListRepository = databaseRepository
 
 
 }

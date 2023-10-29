@@ -51,7 +51,6 @@ class ProductListFragment : Fragment() {
         viewModel.viewState.observe(viewLifecycleOwner) { viewState ->
             updateUI(viewState)
         }
-        viewModel.loadProductList()
     }
 
     private fun onFavoriteIconClicked(viewData: ProductCardData){

@@ -10,11 +10,14 @@ import com.letslearntogether.madkart.data.repositories.api.ProductService
 import com.letslearntogether.madkart.data.repositories.api.WishListDatabaseRepository
 import com.letslearntogether.madkart.data.repositories.database.AppDatabase
 import com.letslearntogether.madkart.data.repositories.database.WishListDao
+import com.letslearntogether.madkart.data.repositories.sharedprefs.WishlistSharedPrefRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 
 @Module
 @InstallIn(SingletonComponent::class) // Used to define the visibility or scope
@@ -34,10 +37,18 @@ class RepositoryModule {
         service: ProductService
     ): ProductRepositoryAPI = ProductRepositoryAPI(service)
 
+    //TO Explain Switching from db to shared prefs ******
+/*
     @Provides
     fun providesWishListRepository(
         databaseRepository: WishListDatabaseRepository
     ): WishListRepository = databaseRepository
+*/
+
+    @Provides
+    fun providesWishListRepository(
+        sharedPrefRepo: WishlistSharedPrefRepo
+    ): WishListRepository = sharedPrefRepo
 
     @Provides
     fun providesWishListDatabaseRepository(
@@ -57,5 +68,16 @@ class RepositoryModule {
         ).build()
         return db.wishListDao()
     }
+
+    @Provides
+    fun providesWishListSharedPrefRepo(
+        @ApplicationContext context: Context
+    ): WishlistSharedPrefRepo {
+        return WishlistSharedPrefRepo(context)
+    }
+
+    @Provides
+    fun providesIoDispatcher(): CoroutineDispatcher = Dispatchers.IO
+
 
 }

@@ -2,9 +2,7 @@ package com.letslearntogether.madkart.data.repositories
 
 interface WishListRepository {
 
-    fun isFavorite(productId: String): Boolean
-
-    fun addToWishList(productId: String)
-
-    fun removeFromWishList(productId: String)
+    suspend fun isFavorite(productId: String): Boolean
+    suspend fun addToWishList(productId: String)
+    suspend fun removeFromWishList(productId: String)
 }

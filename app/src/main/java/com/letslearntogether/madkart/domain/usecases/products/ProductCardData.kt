@@ -6,5 +6,5 @@ data class ProductCardData(
     val price: String,
     val url: String,
     val productId: String,
-    val isFavourite: Boolean
+    var isFavourite: Boolean
 )

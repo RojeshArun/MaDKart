@@ -7,7 +7,10 @@ import androidx.lifecycle.viewModelScope
 import com.letslearntogether.madkart.data.repositories.ProductRepository
 import com.letslearntogether.madkart.data.repositories.WishListRepository
 import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.domain.usecases.wishlist.AddOrRemoveFromWishListUseCase
+import com.letslearntogether.madkart.domain.usecases.wishlist.IsProductInTheWishListUseCase
 import com.letslearntogether.madkart.presentation.productlist.view.ProductListViewState
+import com.letslearntogether.madkart.presentation.productlist.view.updateFavoriteProduct
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +19,9 @@ import javax.inject.Inject
 @HiltViewModel  // @HiltViewModel is an annotation that enables Hilt to inject a ViewModel
 class ProductListViewModel @Inject constructor(
     private val repository: ProductRepository,
-    private val wishListRepository: WishListRepository
+    private val wishListRepository: WishListRepository,
+    private val isProductInWishListUseCase: IsProductInTheWishListUseCase,
+    private val addOrRemoveFromWishListUseCase: AddOrRemoveFromWishListUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableLiveData<ProductListViewState>()
@@ -29,7 +34,6 @@ class ProductListViewModel @Inject constructor(
         viewModelScope.launch {
             _viewState.postValue(ProductListViewState.Loading)
             // Data call to fetch products
-            //Step 4
             val productList = repository.getProductList()
             _viewState.postValue(
                 ProductListViewState.Content(
@@ -46,5 +50,23 @@ class ProductListViewModel @Inject constructor(
                 )
             )
         }
+    }
+
+    fun favoriteIconClicked(productId: String) {
+        viewModelScope.launch {
+            //Add or remove to fav
+            addOrRemoveFromWishListUseCase.execute(productId)
+            //Udpate the UI
+            val currentViewState = _viewState.value
+            (currentViewState as ProductListViewState.Content)?.let { content ->
+                _viewState.postValue(
+                    content.updateFavoriteProduct(
+                        productId,
+                        isProductInWishListUseCase.execute(productId)
+                    )
+                )
+            }
+        }
+
     }
 }

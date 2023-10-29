@@ -1,18 +1,35 @@
 package com.letslearntogether.madkart.data.repositories.api
 
 import com.letslearntogether.madkart.data.repositories.WishListRepository
+import com.letslearntogether.madkart.data.repositories.database.FavouriteProductEntity
+import com.letslearntogether.madkart.data.repositories.database.WishListDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class WishListDatabaseRepository @Inject constructor(): WishListRepository {
+class WishListDatabaseRepository @Inject constructor(
+    private val databaseDAO: WishListDao
+) : WishListRepository {
 
-    override fun isFavorite(productId: String): Boolean {
-        return true
+    override suspend fun isFavorite(productId: String): Boolean {
+        return withContext(Dispatchers.IO) {
+            databaseDAO.isProductFavourite(productId) != null
+        }
     }
 
-    override fun addToWishList(productId: String) {
+    override suspend fun addToWishList(productId: String) {
+        return withContext(Dispatchers.IO){
+            databaseDAO.addProductToFavourites(
+                FavouriteProductEntity(productId,"")
+            )
+        }
     }
 
-    override fun removeFromWishList(productId: String) {
-
+    override suspend fun removeFromWishList(productId: String) {
+        return withContext(Dispatchers.IO){
+            databaseDAO.removeProductToFavourites(
+                FavouriteProductEntity(productId,"")
+            )
+        }
     }
 }

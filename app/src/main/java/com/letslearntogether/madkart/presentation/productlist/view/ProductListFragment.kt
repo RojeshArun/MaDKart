@@ -56,6 +56,10 @@ class ProductListFragment : Fragment() {
         viewModel.loadProductList()
     }
 
+    private fun favoriteIconClicked(viewData: ProductCardData){
+        viewModel.favoriteIconClicked(viewData.productId)
+    }
+
     private fun updateUI(viewState: ProductListViewState) {
         binding.apply {
             when (viewState) {

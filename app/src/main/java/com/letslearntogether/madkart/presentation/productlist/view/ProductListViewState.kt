@@ -14,7 +14,8 @@ fun ProductListViewState.Content.updateFavoriteProduct(
     productId: String,
     isFavorite: Boolean
 ): ProductListViewState.Content {
-    return ProductListViewState.Content(productList = this.productList.map { viewState ->
+    return ProductListViewState.Content(
+        productList = this.productList.map { viewState ->
         if (viewState.productId == productId) {
             viewState.copy(isFavourite = isFavorite)
         } else {

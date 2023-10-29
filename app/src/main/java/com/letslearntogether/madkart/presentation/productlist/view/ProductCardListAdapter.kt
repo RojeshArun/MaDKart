@@ -11,7 +11,10 @@ import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
 import com.letslearntogether.madkart.R
 import com.letslearntogether.madkart.databinding.ProductCardBinding
 
-class ProductCardListAdapter(val onItemClicked: (ProductCardData) -> Unit) :
+class ProductCardListAdapter(
+    val onItemClicked: (ProductCardData) -> Unit,
+    val onFavouriteItemClicked: (ProductCardData) -> Unit
+) :
     RecyclerView.Adapter<ProductCardListAdapter.ViewHolder>() {
 
 
@@ -42,17 +45,23 @@ class ProductCardListAdapter(val onItemClicked: (ProductCardData) -> Unit) :
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(productCardViewState: ProductCardData) {
+        fun bind(productCard: ProductCardData) {
             val bind = ProductCardBinding.bind(itemView)
             itemView.setOnClickListener {
-                onItemClicked(productCardViewState)
+                onItemClicked.invoke(productCard)
             }
             bind.apply {
-                viewProductName.text = productCardViewState.title
-                viewProductDescription.text = productCardViewState.description
-                productPrice.text = productCardViewState.price
+                viewProductName.text = productCard.title
+                viewProductDescription.text = productCard.description
+                productPrice.text = productCard.price
+
+                viewWishlistIcon.setOnClickListener {
+                    onFavouriteItemClicked.invoke(
+                        productCard
+                    )
+                }
                 viewWishlistIcon.setImageDrawable(
-                    if (productCardViewState.isFavourite) {
+                    if (productCard.isFavourite) {
                         ResourcesCompat.getDrawable(
                             viewWishlistIcon.resources,
                             R.drawable.ic_baseline_favorite,
@@ -68,7 +77,7 @@ class ProductCardListAdapter(val onItemClicked: (ProductCardData) -> Unit) :
                 )
                 Glide.with(productImage)
                     .asBitmap()
-                    .load(productCardViewState.url)
+                    .load(productCard.url)
                     .into(BitmapImageViewTarget(productImage))
 
             }

@@ -1,6 +1,7 @@
 package com.letslearntogether.madkart.presentation.productlist.view
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,16 +16,13 @@ import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
 import com.letslearntogether.madkart.presentation.productlist.viewmodel.ProductListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ProductListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-//Step 10 Hilt
 @AndroidEntryPoint
 class ProductListFragment : Fragment() {
     private lateinit var binding: FragmentProductListBinding
-    private val adapter = ProductCardListAdapter(::onItemClicked)
+    private val adapter = ProductCardListAdapter(
+        ::onItemClicked,
+        ::onFavoriteIconClicked
+    )
     private val viewModel: ProductListViewModel by viewModels()
 
     private fun onItemClicked(productCardData: ProductCardData) {
@@ -56,7 +54,7 @@ class ProductListFragment : Fragment() {
         viewModel.loadProductList()
     }
 
-    private fun favoriteIconClicked(viewData: ProductCardData){
+    private fun onFavoriteIconClicked(viewData: ProductCardData){
         viewModel.favoriteIconClicked(viewData.productId)
     }
 
@@ -82,6 +80,7 @@ class ProductListFragment : Fragment() {
                 }
             }
         }
+        adapter.notifyDataSetChanged()
     }
 
 }

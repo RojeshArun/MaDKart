@@ -12,7 +12,7 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.letslearntogether.madkart.*
 import com.letslearntogether.madkart.databinding.FragmentProductListBinding
-import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductCardData
 import com.letslearntogether.madkart.presentation.productlist.viewmodel.ProductListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

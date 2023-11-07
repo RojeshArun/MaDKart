@@ -7,7 +7,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.BitmapImageViewTarget
-import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductCardData
 import com.letslearntogether.madkart.R
 import com.letslearntogether.madkart.databinding.ProductCardBinding
 
@@ -59,6 +59,7 @@ class ProductCardListAdapter(
                     onFavouriteItemClicked.invoke(
                         productCard
                     )
+
                 }
                 viewWishlistIcon.setImageDrawable(
                     if (productCard.isFavourite) {

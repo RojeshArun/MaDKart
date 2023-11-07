@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.letslearntogether.madkart.data.repositories.ProductRepository
+import com.letslearntogether.madkart.domain.interfaces.repositories.ProductRepository
 import com.letslearntogether.madkart.presentation.productdetails.view.ProductDetailViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

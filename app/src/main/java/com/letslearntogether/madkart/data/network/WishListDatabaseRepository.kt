@@ -1,8 +1,8 @@
-package com.letslearntogether.madkart.data.repositories.api
+package com.letslearntogether.madkart.data.network
 
-import com.letslearntogether.madkart.data.repositories.WishListRepository
-import com.letslearntogether.madkart.data.repositories.database.FavouriteProductEntity
-import com.letslearntogether.madkart.data.repositories.database.WishListDao
+import com.letslearntogether.madkart.domain.interfaces.repositories.WishListRepository
+import com.letslearntogether.madkart.data.persistentstorages.database.tableEntities.FavouriteProductTable
+import com.letslearntogether.madkart.data.persistentstorages.database.dao.WishListDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class WishListDatabaseRepository @Inject constructor(
     override suspend fun addToWishList(productId: String) {
         return withContext(Dispatchers.IO){
             databaseDAO.addProductToFavourites(
-                FavouriteProductEntity(productId,"")
+                FavouriteProductTable(productId,"")
             )
         }
     }
@@ -28,7 +28,7 @@ class WishListDatabaseRepository @Inject constructor(
     override suspend fun removeFromWishList(productId: String) {
         return withContext(Dispatchers.IO){
             databaseDAO.removeProductToFavourites(
-                FavouriteProductEntity(productId,"")
+                FavouriteProductTable(productId,"")
             )
         }
     }

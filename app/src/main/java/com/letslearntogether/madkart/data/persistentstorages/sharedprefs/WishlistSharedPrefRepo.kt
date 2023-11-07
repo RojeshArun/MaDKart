@@ -1,8 +1,9 @@
-package com.letslearntogether.madkart.data.repositories.sharedprefs
+package com.letslearntogether.madkart.data.persistentstorages.sharedprefs
 
 import android.content.Context
 import android.content.SharedPreferences
-import com.letslearntogether.madkart.data.repositories.WishListRepository
+import android.util.Log
+import com.letslearntogether.madkart.domain.interfaces.repositories.WishListRepository
 
 class WishlistSharedPrefRepo(context: Context): WishListRepository {
 
@@ -31,6 +32,7 @@ class WishlistSharedPrefRepo(context: Context): WishListRepository {
                 sharedPref.edit().putStringSet(KEY_FAVORITES_SET, this).apply()
             }
         }
+        Log.e("SharedPrefs","Added to wishlist $productId")
     }
 
     override suspend fun removeFromWishList(productId: String) {
@@ -42,5 +44,6 @@ class WishlistSharedPrefRepo(context: Context): WishListRepository {
                 sharedPref.edit().putStringSet(KEY_FAVORITES_SET, this).apply()
             }
         }
+        Log.e("SharedPrefs","Removed from wishlist $productId")
     }
 }

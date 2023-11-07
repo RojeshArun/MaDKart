@@ -1,6 +1,6 @@
 package com.letslearntogether.madkart.presentation.productlist.view
 
-import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductCardData
 
 sealed class ProductListViewState {
     object Error : ProductListViewState()

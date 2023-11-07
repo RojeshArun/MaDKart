@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.data.repositories.api.models
+package com.letslearntogether.madkart.data.network.models
 //Step 4.1
 data class ProductEntity (
     val id : String,

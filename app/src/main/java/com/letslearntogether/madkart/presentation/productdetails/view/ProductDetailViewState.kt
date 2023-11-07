@@ -1,6 +1,6 @@
 package com.letslearntogether.madkart.presentation.productdetails.view
 
-import com.letslearntogether.madkart.domain.usecases.products.ProductDetails
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductDetails
 
 sealed class ProductDetailViewState {
 

@@ -1,7 +1,6 @@
 package com.letslearntogether.madkart.domain.usecases.wishlist
 
-import com.letslearntogether.madkart.data.repositories.WishListRepository
-import com.letslearntogether.madkart.data.repositories.sharedprefs.WishlistSharedPrefRepo
+import com.letslearntogether.madkart.domain.interfaces.repositories.WishListRepository
 import javax.inject.Inject
 
 class IsProductInTheWishListUseCase @Inject constructor(

@@ -1,7 +1,7 @@
 package com.letslearntogether.madkart.domain.usecases.wishlist
 
 import android.util.Log
-import com.letslearntogether.madkart.data.repositories.WishListRepository
+import com.letslearntogether.madkart.domain.interfaces.repositories.WishListRepository
 import javax.inject.Inject
 
 class AddOrRemoveFromWishListUseCase @Inject constructor(

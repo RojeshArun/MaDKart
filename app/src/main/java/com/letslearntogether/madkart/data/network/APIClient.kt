@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.data.repositories.api
+package com.letslearntogether.madkart.data.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

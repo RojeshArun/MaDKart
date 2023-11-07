@@ -1,16 +1,16 @@
-package com.letslearntogether.madkart.data.repositories.api
+package com.letslearntogether.madkart.data.repositories
 
-import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
-import com.letslearntogether.madkart.data.repositories.ProductRepository
-import com.letslearntogether.madkart.domain.usecases.products.ProductDetails
+import com.letslearntogether.madkart.data.network.ProductService
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductCardData
+import com.letslearntogether.madkart.domain.interfaces.repositories.ProductRepository
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductDetails
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 //Step 2 Hilt
-class ProductRepositoryAPI @Inject constructor(
+class ProductRepositoryImpl @Inject constructor(
     private val service: ProductService,
     private val dispatcher: CoroutineDispatcher = IO
     ) : ProductRepository {

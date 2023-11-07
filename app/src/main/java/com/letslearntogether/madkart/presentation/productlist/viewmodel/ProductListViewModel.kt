@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.letslearntogether.madkart.data.repositories.ProductRepository
-import com.letslearntogether.madkart.data.repositories.WishListRepository
-import com.letslearntogether.madkart.domain.usecases.products.ProductCardData
+import com.letslearntogether.madkart.domain.interfaces.repositories.ProductRepository
+import com.letslearntogether.madkart.domain.interfaces.repositories.WishListRepository
+import com.letslearntogether.madkart.domain.entities.errorhandling.products.ProductCardData
 import com.letslearntogether.madkart.domain.usecases.wishlist.AddOrRemoveFromWishListUseCase
 import com.letslearntogether.madkart.domain.usecases.wishlist.IsProductInTheWishListUseCase
 import com.letslearntogether.madkart.presentation.productlist.view.ProductListViewState

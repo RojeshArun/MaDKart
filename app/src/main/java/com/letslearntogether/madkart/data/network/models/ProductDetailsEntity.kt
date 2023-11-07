@@ -1,4 +1,4 @@
-package com.letslearntogether.madkart.data.repositories.api.models
+package com.letslearntogether.madkart.data.network.models
 
 data class ProductDetailsEntity(
     val title: String,

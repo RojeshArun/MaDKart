@@ -1,5 +1,5 @@
-package com.letslearntogether.madkart.data.repositories
-
+package com.letslearntogether.madkart.domain.interfaces.repositories
+//Step 3 - Expose to the above layers room db
 interface WishListRepository {
 
     suspend fun isFavorite(productId: String): Boolean

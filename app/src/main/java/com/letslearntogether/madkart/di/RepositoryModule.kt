@@ -1,16 +1,16 @@
-package com.letslearntogether.madkart.data.repositories.di
+package com.letslearntogether.madkart.di
 
 import android.content.Context
 import androidx.room.Room
-import com.letslearntogether.madkart.data.repositories.api.APIClient
-import com.letslearntogether.madkart.data.repositories.ProductRepository
-import com.letslearntogether.madkart.data.repositories.WishListRepository
-import com.letslearntogether.madkart.data.repositories.api.ProductRepositoryAPI
-import com.letslearntogether.madkart.data.repositories.api.ProductService
-import com.letslearntogether.madkart.data.repositories.api.WishListDatabaseRepository
-import com.letslearntogether.madkart.data.repositories.database.AppDatabase
-import com.letslearntogether.madkart.data.repositories.database.WishListDao
-import com.letslearntogether.madkart.data.repositories.sharedprefs.WishlistSharedPrefRepo
+import com.letslearntogether.madkart.data.network.APIClient
+import com.letslearntogether.madkart.domain.interfaces.repositories.ProductRepository
+import com.letslearntogether.madkart.domain.interfaces.repositories.WishListRepository
+import com.letslearntogether.madkart.data.repositories.ProductRepositoryImpl
+import com.letslearntogether.madkart.data.network.ProductService
+import com.letslearntogether.madkart.data.network.WishListDatabaseRepository
+import com.letslearntogether.madkart.data.persistentstorages.database.MadKartDatabase
+import com.letslearntogether.madkart.data.persistentstorages.database.dao.WishListDao
+import com.letslearntogether.madkart.data.persistentstorages.sharedprefs.WishlistSharedPrefRepo
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,15 +29,17 @@ class RepositoryModule {
 
     @Provides
     fun providesProductRepository(
-        productRepositoryAPI: ProductRepositoryAPI
+        productRepositoryAPI: ProductRepositoryImpl
     ): ProductRepository = productRepositoryAPI
 
     @Provides
     fun providesProductRepositoryAPI(
         service: ProductService
-    ): ProductRepositoryAPI = ProductRepositoryAPI(service)
+    ): ProductRepositoryImpl =
+        ProductRepositoryImpl(service)
 
     //TO Explain Switching from db to shared prefs ******
+    // Room db
 /*
     @Provides
     fun providesWishListRepository(
@@ -45,10 +47,17 @@ class RepositoryModule {
     ): WishListRepository = databaseRepository
 */
 
+    //Share prefs
     @Provides
     fun providesWishListRepository(
         sharedPrefRepo: WishlistSharedPrefRepo
     ): WishListRepository = sharedPrefRepo
+
+    /* //TODO datastore
+    fun providesWishListRepository(
+        preferenceDataStore:WishlistSharedPrefRepo
+    ):WishListRepository = preferenceDataStore*/
+
 
     @Provides
     fun providesWishListDatabaseRepository(
@@ -63,7 +72,7 @@ class RepositoryModule {
     ): WishListDao {
         val db = Room.databaseBuilder(
             context,
-            AppDatabase::class.java,
+            MadKartDatabase::class.java,
             "ecommerce-mad-database"
         ).build()
         return db.wishListDao()
